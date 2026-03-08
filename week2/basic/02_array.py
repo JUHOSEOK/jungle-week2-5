@@ -30,6 +30,9 @@
 - 회전 후 위치: (i, j) -> (j, n-1-i)
 - 새로운 배열을 만들어 값을 채워넣으세요
 """
+#
+
+
 
 def rotate_matrix_90(matrix):
     """
@@ -45,10 +48,36 @@ def rotate_matrix_90(matrix):
     
     # TODO: n x n 크기의 새로운 배열을 생성하세요 (0으로 초기화)
     pass
-        
+
+    rotated = [[0] * n for _ in range(n)]
+
     # TODO: 원본 배열의 각 요소를 회전된 위치에 배치하세요
     # 힌트: (i, j) 위치의 요소는 회전 후 (j, n-1-i) 위치로 이동
+    # 00 01 02
+    # 10 11 12
+    # 20 21 22
+
+    # 20 10 00
+    # 21 11 01
+    # 22 12 02
+
+    # 00 -> 02
+    # 01 -> 12
+    # 02 -> 22
+
+    # 10 -> 01
+    # 11 -> 11
+    # 12 -> 21
+    idx = 0
+
+    for i in range(n):
+        for j in range(n):
+            idx += 1
+            rotated[j][n-1-i] = idx
+
     pass
+
+
     
     return rotated
 

@@ -41,15 +41,38 @@ def find_above_average_students(students):
     Returns:
         tuple: (평균 점수, 평균 이상 학생 이름 리스트)
     """
+
+
     # TODO: 모든 학생의 점수를 리스트로 추출하세요
     pass
-    
+    # 배열안에 있는 딕셔너리가있을텐데 그 딕셔너리 값을 어떻게 접근하지?
+    # students1[0][score]
+    # 리스트 컴프리헨션이 뭐지?
+    # 리스트안에서 표현식이나, 조건문을 통해 원래는 1.배열 초기화 2.값 저장 에 순서를 거쳐야하지만 리스트 안에서 이걸 한번에 해결하는 list comprehension 굳이 직역하면 리스트 이해력? 인데 의미가 안맞아
+
+
     # TODO: 평균 점수를 계산하세요
+    # 리스트를 인자로 받아오면 거기서 socre만 다시 리스트로 만듬
+    # 리스트만 받아온 배열에서 sum()함수써서 총 점수 구함
+    # 리스트만 받아온 배열의 길이가 학생의 수니까 총길이 도구함
+    # 둘이 나눠서 구함 평균점수
+
     pass
-    
+    scoreList = [i["score"] for i in students ]
+    above_average_students = []
+    sumScore = sum(scoreList)
+    length = len(scoreList)
+    average = sumScore / length
+
     # TODO: 평균 이상인 학생들의 이름을 리스트로 추출하세요
-    pass
-    
+    # 학생점수 배열을 평균이상 넘는다면
+    # 학생리스트 받아온 배열에서 값을 추가해줌
+    stuList = [i["name"] for i in students]
+
+    for i in range(length):
+        if scoreList[i] >= average:
+            above_average_students.append(stuList[i])
+
     return average, above_average_students
 
 # 테스트 케이스
