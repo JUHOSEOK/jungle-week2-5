@@ -25,24 +25,42 @@
 def insertion_sort(arr):
     """
     삽입 정렬 구현
-    
+
     Args:
         arr: 정렬할 배열
-    
+
     Returns:
         정렬된 배열
     """
     n = len(arr)
-    
+
     # TODO: 두 번째 원소(인덱스 1)부터 시작
     ## 각 원소를 정렬된 부분에 삽입
-    ## 현재 원소를 key에 저장    
+    ## 현재 원소를 key에 저장
     ## key를 삽입할 위치 찾기
     ## j는 key 바로 앞 인덱스부터 시작
     ## arr[j] > key인 동안 원소를 오른쪽으로 이동
     ## 찾은 위치에 key 삽입
+
+    for i in range(1,n):
+        key = i
+        ## 현재값보다 작다면 앞으로 가서 탐색해야할 인덱스 번호
+
+        cur = arr[i]
+        # 마지막에 0 이거나 현재의 원소보다 작은 값의 순서에 원소를 만날시 저장할 선택된 원소값
+
+        # 배열의 인덱스 번호가 0보다 크고
+        # 선택된 원소의값 이 왼쪽배열보다 작다면
+        while key > 0 and cur < arr[key-1]:
+            arr[key] = arr[key-1]
+
+            key -= 1
+            # 작다면 왼쪽으로 계속 탐색하기 위해 -1
+
+        arr[key] = cur
+
     pass
-    
+
     return arr
 
 def insertion_sort_with_steps(arr):
@@ -51,20 +69,29 @@ def insertion_sort_with_steps(arr):
     """
     n = len(arr)
     print(f"초기 배열: {arr}")
-    
+
     for i in range(1, n):
+
         key = arr[i]
+
         j = i - 1
-        
+        # 비교할 전 배열의 인덱스 의 key인가?
+        # 왜 필요한고야? j는 ?
+        # 바로 옆 인덱스 접근해야하니까?
+
         print(f"\nStep {i}: key = {key}")
         print(f"정렬된 부분: {arr[:i]}")
-        
+
         # TODO: 삽입 위치 찾기 및 이동
+        while j >= 0 and key < arr[j]:
+            arr[j+1] = arr[j]
+            j -= 1
+
         pass
-        
+
         arr[j + 1] = key
         print(f"삽입 후: {arr}")
-    
+
     return arr
 
 # 테스트 케이스

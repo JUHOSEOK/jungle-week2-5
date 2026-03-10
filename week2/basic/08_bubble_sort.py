@@ -36,7 +36,18 @@ def bubble_sort(arr):
     
     # TODO: 외부 반복문 - n-1번 반복
     # 각 패스마다 가장 큰 원소가 끝으로 이동
+    for i in range(n-1):
+        # 전체정렬에 필요한 패스개수 n-1
+        for j in range(0, n-1-i):
+        # 인덱스 하나 정렬에 필요한 패스 개수 n-1-i
+        # i 를 패스의 개수로보고 패스했다면 -> 다음에 인덱스에 정렬할때 -1번 해야하니까 -1
     ## TODO: 내부 반복문 - 인접한 원소 비교
+            if arr[j] > arr[j+1]:
+                keep = arr[j+1]
+                arr[j+1] = arr[j]
+                arr[j] = keep
+
+
     ## 0부터 n-i-1까지 반복 (이미 정렬된 뒷부분 제외)
     ## TODO: 인접한 두 원소 비교 및 교환
     ## arr[j] > arr[j+1]이면 교환
@@ -56,17 +67,33 @@ def bubble_sort_optimized(arr):
         정렬된 배열
     """
     n = len(arr)
-    
-    for i in range(n):
+
+
+
+
+    for i in range(n - 1):
         swapped = False  # 교환 발생 여부
-        
+
+        # 전체정렬에 필요한 패스개수 n-1
+        for j in range(0, n - 1 - i):
+            if arr[j] > arr[j + 1]:
+                keep = arr[j + 1]
+                arr[j + 1] = arr[j]
+                arr[j] = keep
+                swapped = True
+
+
+        if not swapped:
+            break
+
+
         # TODO: 내부 반복문과 교환 로직 구현
         # 교환이 발생하면 swapped = True 설정        
-        pass
-        
+
+
 
         # TODO: 교환이 없으면 이미 정렬된 것이므로 break
-        pass
+
 
     return arr
 
@@ -81,7 +108,7 @@ if __name__ == "__main__":
     print()
     
     # 테스트 케이스 2: 이미 정렬된 배열
-    arr2 = [1, 2, 3, 4, 5]
+    arr2 = [1,2,3,4,5]
     print("=== 테스트 케이스 2: 이미 정렬됨 ===")
     print(f"정렬 전: {arr2}")
     result2 = bubble_sort_optimized(arr2.copy())

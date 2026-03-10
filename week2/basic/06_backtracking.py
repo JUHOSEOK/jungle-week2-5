@@ -15,7 +15,12 @@
 
 예제:
 입력: n = 4, k = 2
-출력: [[1, 2], [1, 3], [1, 4], [2, 3], [2, 4], [3, 4]]
+출력: [ [1, 2], [1, 3], [1, 4], [2, 3], [2, 4], [3, 4] ]
+
+재귀쓰는이유 : 뒤로돌아가하니까
+뒤로돌아가는조건 k 길이가 같을때 재귀 종료조건
+왜근데 불르트 포스로 안되지?
+무조건 중복이 아닌건가?
 
 힌트:
 - 백트랙킹의 3단계: 선택(Choose) → 탐색(Explore) → 취소(Unchoose)
@@ -25,6 +30,9 @@
 def combinations(n, k):
     """
     1부터 n까지 숫자 중 k개를 선택하는 모든 조합 찾기
+
+    함수안에 백트래킹을 만든이유가 n, k를 매개변수로 받아야 해서 그런가?
+    n은 전체 숫자개수? k선택할 개수 ?
     
     Args:
         n: 전체 숫자 개수
@@ -44,6 +52,9 @@ def combinations(n, k):
             current_combination: 현재까지 선택한 숫자들
         """
         # TODO: base case - k개를 모두 선택했으면 결과에 추가
+        if  len(current_combination) == k:
+            result.append(current_combination[:])
+            return
         pass
         
         # TODO: start부터 n까지 숫자를 하나씩 시도
@@ -51,6 +62,30 @@ def combinations(n, k):
         ## 1. 선택(Choose)
         ## 2. 탐색(Explore)
         ## 3. 취소(Unchoose)
+        # 0을 선택했을 때 재귀 호출
+
+    #     current_combination.append(1)
+    #     backtrack(1 + 1, current_combination)
+    #     current_combination.pop()
+    #
+    # # 1을 선택했을 때 재귀 호출
+    #     current_combination.append(2)
+    #     backtrack(2 + 1, current_combination)
+    #     current_combination.pop()
+    #
+    #     current_combination.append(3)
+    #     backtrack(3 + 1, current_combination)
+    #     current_combination.pop()
+    #
+    #     current_combination.append(4)
+    #     backtrack(4 + 1, current_combination)
+    #     current_combination.pop()
+
+        for i in range(start, len(current_combination)+1):
+            current_combination.append(i)
+            backtrack(i+1, current_combination)
+            current_combination.pop()
+
         pass
     
     backtrack(1, [])

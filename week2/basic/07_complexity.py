@@ -23,6 +23,7 @@
 """
 
 def find_duplicates_brute_force(nums):
+    isduplication = [False for _ in range(len(nums))]
     """
     방법1: 이중 반복문 사용
     시간 복잡도: O(n²)
@@ -34,11 +35,23 @@ def find_duplicates_brute_force(nums):
     # TODO: 이중 반복문으로 중복 찾기
     ## i번째 원소와 i+1 이후의 모든 원소를 비교
     ## 같은 원소를 찾으면 duplicates에 추가 (중복 추가 방지 필요)
+
+    # n = 7
+    # 6까지 해야 인덱스 범위 안터지나?
+    # [4, 3, 2, 7, 8, 2, 3, 1]
+    # 중복일때 nums[i] 는 2, 3
+    for i in range(n):
+        for j in range(i+1, n):
+            if nums[i] == nums[j] and isduplication[nums[i]] == False:
+                isduplication[nums[i]] = True
+                duplicates.append(nums[i])
+                # 중복인값을 duplicates 배열에 추가
     pass
     
     return duplicates
 
 def find_duplicates_sorting(nums):
+    isduplication = [False for _ in range(len(nums))]
     """
     방법2: 정렬 후 인접 원소 비교
     시간 복잡도: O(n log n) - 정렬
@@ -49,11 +62,16 @@ def find_duplicates_sorting(nums):
     
     # TODO: 배열을 정렬하세요 (nums.sort() 사용)
     pass
-    
+    nums.sort()
     duplicates = []
     
     # TODO: 인접한 원소를 비교하여 중복 찾기
     # i와 i+1 원소가 같고, duplicates에 없으면 추가
+    for i in range( len(nums)-1) :
+        if nums[i] == nums[i+1] and isduplication[nums[i]] == False:
+            isduplication[nums[i]] = True
+            duplicates.append(nums[i])
+
     pass
     
     return duplicates
@@ -70,8 +88,17 @@ def find_duplicates_hash(nums):
     # TODO: 각 원소를 순회하면서
     ## 이미 seen에 있으면 duplicates에 추가
     ## 없으면 seen에 추가
+
+    #set() 함수가 뭐지?
+    # 해쉬 집합은 중복을 허용하지 않고 순서가 없는 고유한 원소들의 모음을 관리하기 위해 해시 테이블을 사용하여구현한 자료 알고리즘(list, tuple, set, dict)
+    # set에 데이터에 접근하는방법?
     pass
-    
+    for i in range(len(nums)):
+        if not nums[i] in seen:
+            seen.add(nums[i])
+        else:
+            duplicates.add(nums[i])
+
     return list(duplicates)
 
 def measure_time(func, nums, method_name):

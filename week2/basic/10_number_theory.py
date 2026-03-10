@@ -23,6 +23,8 @@
 - 유클리드 호제법: gcd(a, b) = gcd(b, a % b)
 - LCM 공식: lcm(a, b) = (a × b) / gcd(a, b)
 """
+import math
+
 
 def gcd(a, b):
     """
@@ -36,7 +38,11 @@ def gcd(a, b):
     """
     # TODO: 유클리드 호제법 구현
     # base case: b가 0이면 a 반환
-    # recursive를 이용 
+    # recursive를 이용
+    if b == 0:
+        return a
+
+    return gcd(b, a % b)
     pass
 
 def gcd_iterative(a, b):
@@ -51,6 +57,16 @@ def gcd_iterative(a, b):
     """
     # TODO: 반복문으로 구현
     # b가 0이 될 때까지 반복
+
+    while b > 0:
+        tmp = b
+        b = a % b
+        a = tmp
+
+    return a
+
+
+
     pass
 
 def lcm(a, b):
@@ -64,6 +80,8 @@ def lcm(a, b):
         최소공배수
     """
     # TODO: LCM 계산
+    return (a*b) % gcd(a,b)
+
     pass
 
 def extended_gcd(a, b):
@@ -81,7 +99,15 @@ def extended_gcd(a, b):
     # base case: b가 0이면 (a, 1, 0) 반환    
     # recursive case
     # 역추적하며 x, y 계산
+    if b == 0:
+        return (a,1,0)
+
+    g, = extended_gcd(b, a % b)
+
+
+
     pass
+
 
 def is_prime(n):
     """
@@ -95,9 +121,41 @@ def is_prime(n):
     """
     # TODO: 소수 판별 구현
     # n이 2보다 작으면 False
-    # 2부터 sqrt(n)까지 나누어 떨어지는지 확인    
+    # 2부터 sqrt(n)까지 나누어 떨어지는지 확인
+    # n 까지 나누면 안되지않나? n이 7이라면 7로 나누면 나눠떨어지잖아
+    # sqrt 가 머지 7의 루트?
     # 3부터 sqrt(n)까지 홀수만 확인
+    # 홀수를 왜 확인해? 소수가 되는정의?
+    # 소수는 2이하면 안되고
+    if n < 2 and n % 2 == 0:
+        return False
+
+    # for i in range(2,math.sqrt(n)):
+    #     if n % i == 0:
+    #         return False
+
+    for i in range(3, int(math.sqrt(n)), 2):
+        if n % i == 0:
+            return False
+
+    return True
+
+
+
+
+
+
+
+
+
+
     pass 
+if __name__ == "__main__":
+    print("=== 테스트 케이스 1: GCD와 LCM ===")
+    a, b = 48, 18
+    print(f"a = {a}, b = {b}")
+    print(f"GCD (재귀): {gcd(a, b)}")
+
 
 # 테스트 케이스
 if __name__ == "__main__":
@@ -109,7 +167,7 @@ if __name__ == "__main__":
     print(f"GCD (반복): {gcd_iterative(a, b)}")
     print(f"LCM: {lcm(a, b)}")
     print()
-    
+
     # 테스트 케이스 2
     print("=== 테스트 케이스 2 ===")
     a, b = 100, 75
@@ -117,7 +175,7 @@ if __name__ == "__main__":
     print(f"GCD: {gcd(a, b)}")
     print(f"LCM: {lcm(a, b)}")
     print()
-    
+
     # 테스트 케이스 3: 서로소
     print("=== 테스트 케이스 3: 서로소 ===")
     a, b = 17, 19
@@ -126,7 +184,7 @@ if __name__ == "__main__":
     print(f"LCM: {lcm(a, b)}")
     print("서로소(coprime): GCD가 1")
     print()
-    
+
     # 테스트 케이스 4: 확장 유클리드
     print("=== 테스트 케이스 4: 확장 유클리드 ===")
     a, b = 35, 15
@@ -136,7 +194,7 @@ if __name__ == "__main__":
     print(f"{a} × {x} + {b} × {y} = {g}")
     print(f"검증: {a * x + b * y} = {g}")
     print()
-    
+
     # 테스트 케이스 5: 소수 판별
     print("=== 테스트 케이스 5: 소수 판별 ===")
     test_numbers = [2, 3, 4, 17, 20, 29, 100]
