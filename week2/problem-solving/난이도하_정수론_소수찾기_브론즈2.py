@@ -11,6 +11,7 @@
 # 1. 문자의 개수를 받고
 # 2. 개수에 만큼 for문 돌려서 배열에 넣고
 # 3.또 for문 돌려서 sosu함수 하나씩 넣어보기
+import math
 
 def sosu(n):
     n = int(n)
