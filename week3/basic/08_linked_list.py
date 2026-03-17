@@ -27,7 +27,7 @@ class Node:
     def __init__(self, data):
         self.data = data
         self.next = None
-
+list
 class LinkedList:
     """단순 연결 리스트"""
     def __init__(self):
