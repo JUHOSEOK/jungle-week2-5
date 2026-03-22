@@ -51,7 +51,7 @@ def preorder(root):
     # TODO: 루트 값 추가
 
     result.append(root.value)
-    # 근데 왜 또 저장?
+
     # TODO: 왼쪽 서브트리 순회
 
     result += (preorder(root.left))
