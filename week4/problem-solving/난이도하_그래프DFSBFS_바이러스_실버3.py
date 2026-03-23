@@ -7,7 +7,7 @@
 # 1. 컴퓨터수
 # 2. 컴퓨터간의 쌍의수
 # 3. 연결된 컴퓨터 리스트들
-
+#
 # 7
 # 6
 # 1 2
@@ -44,6 +44,7 @@ while queue:
 
 
 print(len(visitied)-1)
-
+print(graph)
+print(sorted(visitied))
 
 

@@ -9,7 +9,7 @@ from collections import deque
 n = int(sys.stdin.readline())
 
 def is_range(arr1, arr2, n):
-    return arr1 >= 0 and arr1 < n and arr2 >= 0 and arr2 < n
+    return 0 <= arr1 < n and 0 <= arr2 < n
 
 
 grid = []
